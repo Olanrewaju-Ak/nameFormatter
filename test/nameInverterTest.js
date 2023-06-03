@@ -22,4 +22,10 @@ describe("nameInverter", function () {
     const expectedOutput = "name";
     assert.equal(nameInverter(inputName), expectedOutput);
   });
+  it("should return a last-name,first-name when passed a first and last-nmae with extra spaces around the names", function () {
+    const inputName = "first last";
+    const expectedOutput = "last, first";
+
+    assert.equal(nameInverter(inputName), expectedOutput);
+  });
 });
