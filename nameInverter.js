@@ -1,22 +1,29 @@
 const nameInverter = function (name) {
-  if (name === "") {
+  if (name === undefined) {
+    throw Error("Error");
+  }
+  let trimmedName = name.trim();
+  splitName = trimmedName.split(" ");
+  const validateTitle = (prefix) => {
+    if (prefix === "Dr." || prefix === "Mr." || prefix === "Mrs." || prefix === "Ms.") {
+      return true;
+    }
+  };
+  if (trimmedName === "") {
     return "";
+  } else if (validateTitle(trimmedName)) {
+    return "";
+  } else if (splitName.length === 3 && validateTitle(splitName[0])) {
+    finalString = `${splitName[0]} ${splitName[2]}, ${splitName[1]}`;
+    return finalString;
+  } else if (splitName.length === 2) {
+    finalString = `${splitName[1]}, ${splitName[0]}`;
+    return finalString;
+  } else {
+    return trimmedName;
   }
-  // if (name[0] === " " || name[name.length - 1] === " ") {
-  //   let trimmedName = name.trim();
-  //   return trimmedName;
-  // }
-
-  //its like this condition works for two tests at a time??
-  if (/\s/.test) {
-    reversedName = name.trim().split(" ").reverse().join(", ");
-    console.log(reversedName);
-    return reversedName;
-  }
-
-  return name;
 };
 
-nameInverter(" 		 Chan    ");
+console.log(nameInverter("Dr. Bella Shmurda"));
 
 module.exports = nameInverter;

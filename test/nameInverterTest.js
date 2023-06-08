@@ -22,10 +22,38 @@ describe("nameInverter", function () {
     const expectedOutput = "name";
     assert.equal(nameInverter(inputName), expectedOutput);
   });
-  it("should return a last-name,first-name when passed a first and last-nmae with extra spaces around the names", function () {
+  it("should return a last-name,first-name when passed a first and last-name ", function () {
     const inputName = "first last";
     const expectedOutput = "last, first";
 
     assert.equal(nameInverter(inputName), expectedOutput);
+  });
+  it("should return a last-name,first-name when passed a first and last-name with extra spaces around the names", function () {
+    const inputName = "  first last";
+    const expectedOutput = "last, first";
+
+    assert.equal(nameInverter(inputName), expectedOutput);
+  });
+  it("should return an empty string when passed a single honorific", function () {
+    const inputName = "Dr.";
+    const expectedOutput = "";
+
+    assert.equal(nameInverter(inputName), expectedOutput);
+  });
+  it("should return a honorific last-name, first-name when passed honorific first-name last-name", function () {
+    const inputName = "Dr. first-name last-name";
+    const expectedOutput = "Dr. last-name, first-name";
+
+    assert.equal(nameInverter(inputName), expectedOutput);
+  });
+  it("should throw error when name is undefined", function () {
+    const inputName = undefined;
+    const expectedOutput = "Error";
+
+    const result = () => {
+      nameInverter(undefined);
+    };
+
+    assert.throw(result, Error);
   });
 });
